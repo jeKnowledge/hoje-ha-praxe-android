@@ -9,51 +9,50 @@ import java.io.InputStreamReader;
 import java.net.URL;
 import java.net.URLConnection;
 
-class PraxeReturnObject extends Object {
-    public boolean result;
-}
-
 public class HojeHaPraxeAPI extends AsyncTask<Void, Void, String> {
+    private String API_LINK = "http://praxe.herokuapp.com/result";
+
     @Override
     protected String doInBackground(Void... params) {
         URL praxeURL;
         URLConnection praxeConnection;
         BufferedReader reader;
-        String rawAPI = "Erro.";
-        JSONObject jObject = null;
+        String rawAPI;
+        JSONObject jObject;
 
         try {
-            praxeURL = new URL("http://praxe.herokuapp.com/result");
+            praxeURL = new URL(API_LINK);
             praxeConnection = praxeURL.openConnection();
             reader = new BufferedReader(new InputStreamReader(praxeConnection.getInputStream()));
             StringBuilder sb = new StringBuilder();
 
-            String line = null;
+            String line;
             while ((line = reader.readLine()) != null) {
-                sb.append(line + "\n");
+                sb.append(line.concat("\n"));
             }
 
             reader.close();
             rawAPI = sb.toString();
 
             jObject = new JSONObject(rawAPI);
-        } catch (Exception ex) {
-            System.out.println("An error occurred: " + ex.toString());
-        }
 
-        boolean result = false;
+            boolean result;
 
-        try {
-            result = jObject.getBoolean("hapraxe");
+            try {
+                result = jObject.getBoolean("hapraxe");
+            } catch(Exception ex) {
+                System.out.println("An error occurred: " + ex.toString());
+                return "Erro: " + ex.toString();
+            }
+
+            if (result) {
+                return "Há praxe";
+            }
+
+            return "Não há praxe";
         } catch (Exception ex) {
             System.out.println("An error occurred: " + ex.toString());
             return "Erro: " + ex.toString();
         }
-
-        if (result) {
-            return "Há praxe";
-        }
-
-        return "Não há praxe";
     }
 }
