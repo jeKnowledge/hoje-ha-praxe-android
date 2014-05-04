@@ -1,40 +1,51 @@
 package com.jeknowledge.hojehapraxe.app;
 
-import android.content.Context;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.Toast;
+import android.widget.TextView;
 
 public class MainActivity extends ActionBarActivity {
+    PraxeAPIObject praxeObject;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        try {
+            praxeObject = new HojeHaPraxeAPI().execute().get();
+            updateInterface();
+        } catch (Exception ex) {
+            System.out.println("An error occurred: " + ex.toString());
+        }
 
         Button praxeButton = (Button) findViewById(R.id.ha_praxe);
 
         praxeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Context context = getApplicationContext();
-                CharSequence text = "Erro";
-
                 try {
-                    text = new HojeHaPraxeAPI().execute().get();
+                    praxeObject = new HojeHaPraxeAPI().execute().get();
+                    updateInterface();
                 } catch (Exception ex) {
                     System.out.println("An error occurred: " + ex.toString());
                 }
-
-                int duration = Toast.LENGTH_SHORT;
-
-                Toast toast = Toast.makeText(context, text, duration);
-                toast.show();
             }
         });
+    }
+
+    private void updateInterface() {
+        TextView bigAnswer = (TextView) findViewById(R.id.big_answer_textview);
+        TextView reason = (TextView) findViewById(R.id.reason_textview);
+        TextView notification = (TextView) findViewById(R.id.notification_textview);
+
+        bigAnswer.setText(praxeObject.bigAnswer);
+        reason.setText(praxeObject.reason);
+        notification.setText(praxeObject.notification);
     }
 
     @Override

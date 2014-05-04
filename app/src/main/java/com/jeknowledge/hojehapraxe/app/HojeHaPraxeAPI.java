@@ -9,16 +9,23 @@ import java.io.InputStreamReader;
 import java.net.URL;
 import java.net.URLConnection;
 
-public class HojeHaPraxeAPI extends AsyncTask<Void, Void, String> {
+class PraxeAPIObject {
+    public String bigAnswer;
+    public String reason;
+    public String notification;
+}
+
+public class HojeHaPraxeAPI extends AsyncTask<Void, Void, PraxeAPIObject> {
     private String API_LINK = "http://praxe.herokuapp.com/result";
 
     @Override
-    protected String doInBackground(Void... params) {
+    protected PraxeAPIObject doInBackground(Void... params) {
         URL praxeURL;
         URLConnection praxeConnection;
         BufferedReader reader;
         String rawAPI;
         JSONObject jObject;
+        PraxeAPIObject returnObject = new PraxeAPIObject();
 
         try {
             praxeURL = new URL(API_LINK);
@@ -40,19 +47,24 @@ public class HojeHaPraxeAPI extends AsyncTask<Void, Void, String> {
 
             try {
                 result = jObject.getBoolean("hapraxe");
-            } catch(Exception ex) {
+            } catch (Exception ex) {
                 System.out.println("An error occurred: " + ex.toString());
-                return "Erro: " + ex.toString();
+                return null;
             }
 
             if (result) {
-                return "Há praxe";
+                returnObject.bigAnswer = "Pode haver praxe";
+            } else {
+                returnObject.bigAnswer = "Não pode haver praxe";
             }
 
-            return "Não há praxe";
+            returnObject.reason = jObject.getString("reason");
+            returnObject.notification = jObject.getString("notification");
+
+            return returnObject;
         } catch (Exception ex) {
             System.out.println("An error occurred: " + ex.toString());
-            return "Erro: " + ex.toString();
+            return null;
         }
     }
 }
