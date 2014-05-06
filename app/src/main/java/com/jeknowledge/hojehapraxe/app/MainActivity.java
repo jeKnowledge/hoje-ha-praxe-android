@@ -43,8 +43,13 @@ public class MainActivity extends ActionBarActivity {
         TextView reason = (TextView) findViewById(R.id.reason_textview);
         TextView notification = (TextView) findViewById(R.id.notification_textview);
 
+        if (bigAnswer.equals("Não há praxe")) {
+            reason.setText("");
+        } else {
+            reason.setText(praxeObject.reason);
+        }
+
         bigAnswer.setText(praxeObject.bigAnswer);
-        reason.setText(praxeObject.reason);
         notification.setText(praxeObject.notification);
     }
 
