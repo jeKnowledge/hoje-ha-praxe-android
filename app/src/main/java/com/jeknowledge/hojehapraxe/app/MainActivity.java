@@ -1,13 +1,13 @@
 package com.jeknowledge.hojehapraxe.app;
 
+import android.app.Activity;
 import android.graphics.Typeface;
 import android.os.Bundle;
-import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
 
-public class MainActivity extends ActionBarActivity {
+public class MainActivity extends Activity {
     private PraxeAPIObject praxeObject;
     private String REFRESH_NAME = "Atualizar";
 
@@ -22,11 +22,14 @@ public class MainActivity extends ActionBarActivity {
 
         TextView bigAnswer = (TextView) findViewById(R.id.big_answer_textview);
         TextView reason = (TextView) findViewById(R.id.reason_textview);
+        TextView notification = (TextView) findViewById(R.id.notification_textview);
 
         bigAnswer.setTypeface(montagaFont);
-        bigAnswer.setTextSize(40);
+        bigAnswer.setTextSize(55);
 
         reason.setTypeface(montagaFont);
+
+        notification.setTypeface(montagaFont);
 
         try {
             praxeObject = new HojeHaPraxeAPI().execute().get();
@@ -41,12 +44,12 @@ public class MainActivity extends ActionBarActivity {
         TextView reason = (TextView) findViewById(R.id.reason_textview);
         TextView notification = (TextView) findViewById(R.id.notification_textview);
 
-        bigAnswer.setTypeface(montagaFont);
-
-        if (bigAnswer.getText().equals("Não há praxe")) {
+        if (bigAnswer.getText().equals("Pode haver praxe")) {
             reason.setText("");
+            setTheme(android.R.style.Theme_Light_NoTitleBar);
         } else {
             reason.setText(praxeObject.reason);
+            setTheme(android.R.style.Theme_Black_NoTitleBar);
         }
 
         bigAnswer.setText(praxeObject.bigAnswer);
