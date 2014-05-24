@@ -16,8 +16,6 @@ class PraxeAPIObject {
 }
 
 public class HojeHaPraxeAPI extends AsyncTask<Void, Void, PraxeAPIObject> {
-    private String API_LINK = "http://praxe.herokuapp.com/result";
-
     @Override
     protected PraxeAPIObject doInBackground(Void... params) {
         URL praxeURL;
@@ -26,6 +24,7 @@ public class HojeHaPraxeAPI extends AsyncTask<Void, Void, PraxeAPIObject> {
         String rawAPI;
         JSONObject jObject;
         PraxeAPIObject returnObject = new PraxeAPIObject();
+        String API_LINK = "http://praxe.herokuapp.com/result";
 
         try {
             praxeURL = new URL(API_LINK);
