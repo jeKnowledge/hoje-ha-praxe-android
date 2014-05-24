@@ -9,45 +9,40 @@
     android:background="@drawable/praxeappbg"
     tools:context="com.jeknowledge.hojehapraxe.app.MainActivity">
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Atualizar"
-        android:id="@+id/ha_praxe"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="32dp" />
-
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:id="@+id/big_answer_textview"
-        android:text="Procurando..."
+        android:text="Hoje pode haver praxe em Coimbra"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:width="250dp" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Motivos"
+        android:text="Faleceu um professor de Direito."
         android:id="@+id/reason_textview"
-        android:layout_marginTop="34dp"
+        android:layout_marginTop="26dp"
         android:layout_below="@+id/big_answer_textview"
-        android:layout_toLeftOf="@+id/ha_praxe"
-        android:layout_marginRight="30dp" />
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:width="250dp" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceSmall"
-        android:text="Notificação"
+        android:text="Notificação oficial oriunda do Concelho de Veteranos."
         android:id="@+id/notification_textview"
         android:layout_marginTop="41dp"
         android:layout_below="@+id/reason_textview"
-        android:layout_alignRight="@+id/reason_textview"
-        android:layout_alignEnd="@+id/reason_textview" />
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:width="180dp"
+        android:textColor="@android:color/secondary_text_light" />
 
 </RelativeLayout>
