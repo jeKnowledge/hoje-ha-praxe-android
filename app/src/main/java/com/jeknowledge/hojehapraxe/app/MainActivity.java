@@ -1,5 +1,6 @@
 package com.jeknowledge.hojehapraxe.app;
 
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
@@ -10,10 +11,14 @@ public class MainActivity extends ActionBarActivity {
     private PraxeAPIObject praxeObject;
     private String REFRESH_NAME = "Atualizar";
 
+    private Typeface montagaFont;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        montagaFont = Typeface.createFromAsset(getAssets(), "montaga_regular.ttf");
 
         try {
             praxeObject = new HojeHaPraxeAPI().execute().get();
@@ -27,6 +32,8 @@ public class MainActivity extends ActionBarActivity {
         TextView bigAnswer = (TextView) findViewById(R.id.big_answer_textview);
         TextView reason = (TextView) findViewById(R.id.reason_textview);
         TextView notification = (TextView) findViewById(R.id.notification_textview);
+
+        bigAnswer.setTypeface(montagaFont);
 
         if (bigAnswer.getText().equals("Não há praxe")) {
             reason.setText("");
