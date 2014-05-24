@@ -20,6 +20,14 @@ public class MainActivity extends ActionBarActivity {
 
         montagaFont = Typeface.createFromAsset(getAssets(), "montaga_regular.ttf");
 
+        TextView bigAnswer = (TextView) findViewById(R.id.big_answer_textview);
+        TextView reason = (TextView) findViewById(R.id.reason_textview);
+
+        bigAnswer.setTypeface(montagaFont);
+        bigAnswer.setTextSize(40);
+
+        reason.setTypeface(montagaFont);
+
         try {
             praxeObject = new HojeHaPraxeAPI().execute().get();
             updateInterface();
