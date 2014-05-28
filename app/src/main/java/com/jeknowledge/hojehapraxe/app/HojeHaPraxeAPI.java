@@ -52,9 +52,9 @@ public class HojeHaPraxeAPI extends AsyncTask<Void, Void, PraxeAPIObject> {
             }
 
             if (result) {
-                returnObject.bigAnswer = "Pode haver praxe";
+                returnObject.bigAnswer = "Pode haver praxe.";
             } else {
-                returnObject.bigAnswer = "Não pode haver praxe";
+                returnObject.bigAnswer = "Não pode haver praxe.";
             }
 
             returnObject.reason = jObject.getString("reason");

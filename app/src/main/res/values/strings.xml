@@ -2,7 +2,9 @@
 <resources>
 
     <string name="app_name">HojeHaPraxe</string>
-    <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
 
+    <string name="big_answer_default">Hoje pode haver praxe em Coimbra</string>
+    <string name="reason_default">Faleceu o professor José João Jorge do Departamento de Física</string>
+    <string name="notification_default">Notificação oficial oriunda do Concelho de Veteranos</string>
 </resources>

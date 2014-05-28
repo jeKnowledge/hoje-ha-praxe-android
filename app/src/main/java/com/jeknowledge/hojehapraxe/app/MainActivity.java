@@ -11,21 +11,19 @@ public class MainActivity extends Activity {
     private PraxeAPIObject praxeObject;
     private String REFRESH_NAME = "Atualizar";
 
-    private Typeface montagaFont;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        montagaFont = Typeface.createFromAsset(getAssets(), "montaga_regular.ttf");
+        Typeface montagaFont = Typeface.createFromAsset(getAssets(), "montaga_regular.ttf");
 
         TextView bigAnswer = (TextView) findViewById(R.id.big_answer_textview);
         TextView reason = (TextView) findViewById(R.id.reason_textview);
         TextView notification = (TextView) findViewById(R.id.notification_textview);
 
         bigAnswer.setTypeface(montagaFont);
-        bigAnswer.setTextSize(55);
+        bigAnswer.setTextSize(45);
 
         reason.setTypeface(montagaFont);
 
@@ -44,7 +42,7 @@ public class MainActivity extends Activity {
         TextView reason = (TextView) findViewById(R.id.reason_textview);
         TextView notification = (TextView) findViewById(R.id.notification_textview);
 
-        if (bigAnswer.getText().equals("Pode haver praxe")) {
+        if (bigAnswer.getText().equals("Pode haver praxe.")) {
             reason.setText("");
             setTheme(android.R.style.Theme_Light_NoTitleBar);
         } else {
