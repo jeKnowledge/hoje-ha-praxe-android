@@ -42,19 +42,22 @@ public class HojeHaPraxeAPI extends AsyncTask<Void, Void, PraxeAPIObject> {
 
             jObject = new JSONObject(rawAPI);
 
-            boolean result;
+            String result;
 
             try {
-                result = jObject.getBoolean("hapraxe");
+                result = jObject.getString("hapraxe");
             } catch (Exception ex) {
                 System.out.println("An error occurred: " + ex.toString());
                 return null;
             }
 
-            if (result) {
-                returnObject.bigAnswer = "Pode haver praxe.";
+            System.out.println();
+            System.out.println(result);
+
+            if (result.equals("true")) {
+                returnObject.bigAnswer = "Hoje pode haver praxe em Coimbra.";
             } else {
-                returnObject.bigAnswer = "Não pode haver praxe.";
+                returnObject.bigAnswer = "Hoje não pode haver praxe em Coimbra.";
             }
 
             returnObject.reason = jObject.getString("reason");
