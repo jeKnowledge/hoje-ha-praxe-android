@@ -66,7 +66,10 @@ public class HojeHaPraxeAPI extends AsyncTask<Void, Void, PraxeAPIObject> {
             return returnObject;
         } catch (Exception ex) {
             System.out.println("An error occurred: " + ex.toString());
-            return null;
+
+            returnObject.bigAnswer = "Erro na ligação ao servidor.";
+
+            return returnObject;
         }
     }
 }
