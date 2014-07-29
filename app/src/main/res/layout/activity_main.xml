@@ -2,7 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#e8e8e"
+    android:background="#e8e8e8"
     tools:context="com.jeknowledge.hojehapraxe.app.MainActivity">
 
     <ImageView
